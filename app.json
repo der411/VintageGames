@@ -31,6 +31,12 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "983acda4-a3d6-4730-b556-7db801223639"
+      }
+    },
+    "owner": "der411"
   }
 }

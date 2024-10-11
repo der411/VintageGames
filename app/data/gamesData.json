@@ -1,0 +1,8 @@
+[
+    { "id": "1", "name": "Pogs", "image": "pog.png" },
+    { "id": "2", "name": "Billes", "image": "bille.png" },
+    { "id": "3", "name": "Yo-yo", "image": "yoyo.png" },
+    { "id": "4", "name": "Rubik's Cube", "image": "rubiks.png" },
+    { "id": "5", "name": "Tamagotchi", "image": "tamagotchi.png" },
+    { "id": "6", "name": "Scoubidou", "image": "scoubidou.png" }
+  ]
