@@ -5,6 +5,9 @@ import { StackNavigationProp } from '@react-navigation/stack';
 export type RootStackParamList = {
   Home: undefined;
   GameDetail: { gameId: string };
+  "/": undefined;
+  "/pogs": undefined;
+  "/pogs/[id]": { id: string };
 };
 
 // Types pour l'écran Home

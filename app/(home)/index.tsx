@@ -1,8 +1,10 @@
 import React from 'react';
-import { View, FlatList, StyleSheet } from 'react-native';
+import { View, FlatList, StyleSheet, Button } from 'react-native';
+import { useRouter } from 'expo-router';
 import GameCard from '../../components/GameCard';
 import gamesData from '../../data/gamesData.json';
 import imageMap from '../../data/imageMap';
+import { ROUTES } from '../../constants/routes';
 
 // Convertir les chemins d'image en require
 const games = gamesData.map(game => ({
@@ -10,10 +12,16 @@ const games = gamesData.map(game => ({
   image: imageMap[game.image]
 }));
 
-// Composant HomeScreen qui affiche la liste des jeux
 const HomeScreen = () => {
+  const router = useRouter();
+
+  const handlePogsPress = () => {
+    router.push(ROUTES.POGS as any);
+  };
+
   return (
-    <View>
+    <View style={styles.container}>
+      <Button title="Pogs" onPress={handlePogsPress} />
       <FlatList
         data={games}
         renderItem={({ item }) => (
@@ -27,7 +35,6 @@ const HomeScreen = () => {
 
 export default HomeScreen;
 
-// Styles du composant HomeScreen
 const styles = StyleSheet.create({
   container: {
     flex: 1,
