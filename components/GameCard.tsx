@@ -1,12 +1,7 @@
 import React from 'react';
-import { Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { useRouter } from 'expo-router';
 import { ThemedText } from './ThemedText';
-import { useNavigation } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamList } from '../app/navigationTypes';
-import { router } from 'expo-router';
-
-type GameCardNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
 
 interface GameCardProps {
   name: string;
@@ -15,7 +10,7 @@ interface GameCardProps {
 }
 
 const GameCard: React.FC<GameCardProps> = ({ name, image, gameId }) => {
-  const navigation = useNavigation<GameCardNavigationProp>();
+  const router = useRouter();
 
   const handlePress = () => {
     router.push(`/(home)/details?gameId=${gameId}`);
