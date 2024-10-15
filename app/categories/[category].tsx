@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Button, FlatList, StyleSheet } from 'react-native';
+import { View, Text, FlatList, StyleSheet, ImageBackground, TouchableOpacity } from 'react-native';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { PRODUCTS } from '../../data/products';
 
@@ -10,32 +10,74 @@ export default function CategoryScreen(): JSX.Element {
   const filteredProducts = PRODUCTS.filter(product => product.categoryId === category);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Produits</Text>
+    <ImageBackground
+      source={require('../../assets/background.png')}
+      style={styles.background}
+    >
       <FlatList
         data={filteredProducts}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <Button
-            title={item.name}
+          <TouchableOpacity
+            style={styles.card}
             onPress={() =>
               router.push({ pathname: '/products/[productId]', params: { productId: item.id } })
             }
-          />
+          >
+            <Text style={styles.cardTitle}>{item.name}</Text>
+          </TouchableOpacity>
+        )}
+        contentContainerStyle={styles.list}
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
+        ListHeaderComponent={() => (
+          <Text style={styles.title}>Produits</Text>
         )}
       />
-    </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
+  background: {
+    flex: 1,
+    resizeMode: 'cover',
+  },
   container: {
     flex: 1,
     padding: 16,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
+    textAlign: 'center',
+    color: '#fff', // Optionnel : pour rendre le texte visible sur l'image de fond
+  },
+  list: {
+    alignItems: 'center',
+    padding: 16,
+  },
+  card: {
+    backgroundColor: '#fff',
+    borderRadius: 8,
+    padding: 16,
+    marginBottom: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 5,
+    width: 150,
+    height: 150,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  cardTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
 });

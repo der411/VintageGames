@@ -31,14 +31,19 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
+    textAlign: 'center',
   },
   description: {
     fontSize: 16,
     marginBottom: 20,
+    textAlign: 'center',
   },
   image: {
-    width: 150,
-    height: 150,
+    width: 180,
+    height: 180,
+    borderRadius: 100, // La moitié de la largeur et de la hauteur pour obtenir un cercle
     marginBottom: 10,
+    alignSelf: 'center',
+    backgroundColor: 'transparent',
   },
 });
