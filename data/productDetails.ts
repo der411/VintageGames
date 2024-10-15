@@ -268,4 +268,19 @@ export const PRODUCT_DETAILS: { [key: string]: ProductDetail } = {
     description: 'Rubiks Cube 4 x 4.',
     imageUrls: [require('../assets/images/rubiks-cube/6.png')],
   },
+  o: {
+    name: 'Yoyo',
+    description: 'Yoyo lumineux.',
+    imageUrls: [require('../assets/images/divers/13.png')],
+  },
+  p: {
+    name: 'Tamagotchi',
+    description: 'Tamagotchi.',
+    imageUrls: [require('../assets/images/divers/11.png')],
+  },
+  q: {
+    name: 'Toupie',
+    description: 'Musicale et lumineuse.',
+    imageUrls: [require('../assets/images/divers/12.png')],
+  },
 };
