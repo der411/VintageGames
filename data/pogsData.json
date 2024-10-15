@@ -1,5 +1,7 @@
 [
     { "id": "1", "name": "Le Roi Lion" },
     { "id": "2", "name": "Pocahontas" },
-    { "id": "3", "name": "Sonic" }
-  ]
+    { "id": "3", "name": "Sonic" },
+    { "id": "4", "name": "Chocapic" },
+    { "id": "5", "name": "Toy Storie" }
+]
