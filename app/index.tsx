@@ -1,17 +1,7 @@
 import React from 'react';
 import { View, Text, Button, FlatList, StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router';
-
-interface Category {
-  id: string;
-  name: string;
-}
-
-const CATEGORIES: Category[] = [
-  { id: '1', name: 'Pogs' },
-  { id: '2', name: 'Billes' },
-  { id: '3', name: 'Consoles' },
-];
+import { CATEGORIES } from '../data/categories';
 
 export default function HomeScreen(): JSX.Element {
   const router = useRouter();
@@ -36,6 +26,13 @@ export default function HomeScreen(): JSX.Element {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16 },
-  title: { fontSize: 24, fontWeight: 'bold', marginBottom: 20 },
+  container: {
+    flex: 1,
+    padding: 16,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
 });

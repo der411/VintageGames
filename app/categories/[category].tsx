@@ -1,56 +1,41 @@
 import React from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
-import { useLocalSearchParams, Link } from 'expo-router';
-
-interface Product {
-  id: string;
-  name: string;
-}
-
-const PRODUCTS: { [key: string]: Product[] } = {
-  '1': [
-    { id: 'a', name: 'Roi Lion' },
-    { id: 'b', name: 'Pocahontas' },
-  ],
-  '2': [
-    { id: 'c', name: 'Oeil de chat' },
-    { id: 'd', name: 'Pépite' },
-  ],
-  '3': [
-    { id: 'e', name: 'Nintendo' },
-    { id: 'f', name: 'Mega Drive' },
-  ],
-};
+import { View, Text, Button, FlatList, StyleSheet } from 'react-native';
+import { useRouter, useLocalSearchParams } from 'expo-router';
+import { PRODUCTS } from '../../data/products';
 
 export default function CategoryScreen(): JSX.Element {
+  const router = useRouter();
   const { category } = useLocalSearchParams<{ category: string }>();
 
-  console.log(`Category parameter received: ${category}`);
-
-  const products = PRODUCTS[category] || [];
-  console.log(`Products for category ${category}:`, products);
+  const filteredProducts = PRODUCTS.filter(product => product.categoryId === category);
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Produits</Text>
       <FlatList
-        data={products}
+        data={filteredProducts}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => {
-          console.log(`Rendering product item: ${item.name} with ID: ${item.id}`);
-          return (
-            <Link href={{ pathname: '/products/[productId]', params: { productId: item.id } }} style={styles.button}>
-              <Text>{item.name}</Text>
-            </Link>
-          );
-        }}
+        renderItem={({ item }) => (
+          <Button
+            title={item.name}
+            onPress={() =>
+              router.push({ pathname: '/products/[productId]', params: { productId: item.id } })
+            }
+          />
+        )}
       />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16 },
-  title: { fontSize: 24, fontWeight: 'bold', marginBottom: 20 },
-  button: { fontSize: 18, color: 'blue', marginVertical: 10 },
+  container: {
+    flex: 1,
+    padding: 16,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
 });
