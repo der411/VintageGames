@@ -11,50 +11,51 @@ export default function CategoryScreen(): JSX.Element {
 
   return (
     <ImageBackground
-      source={require('../../assets/background.png')}
-      style={styles.background}
+      source={require('../../assets/background.png')} // Assurez-vous de remplacer par votre image
+      style={styles.background} // Style pour couvrir tout l'écran
     >
-      <FlatList
-        data={filteredProducts}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            style={styles.card}
-            onPress={() =>
-              router.push({ pathname: '/products/[productId]', params: { productId: item.id } })
-            }
-          >
-            <Text style={styles.cardTitle}>{item.name}</Text>
-          </TouchableOpacity>
-        )}
-        contentContainerStyle={styles.list}
-        showsVerticalScrollIndicator={false}
-        showsHorizontalScrollIndicator={false}
-        ListHeaderComponent={() => (
-          <Text style={styles.title}>Produits</Text>
-        )}
-      />
+      <View style={styles.overlay}>
+        <FlatList
+          data={filteredProducts}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              style={styles.card}
+              onPress={() =>
+                router.push({ pathname: '/products/[productId]', params: { productId: item.id } })
+              }
+            >
+              <Text style={styles.cardTitle}>{item.name}</Text>
+            </TouchableOpacity>
+          )}
+          contentContainerStyle={styles.list}
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
+          ListHeaderComponent={() => (
+            <Text style={styles.title}>Produits</Text>
+          )}
+        />
+      </View>
     </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
   background: {
-    flex: 1,
-    resizeMode: 'cover',
+    flex: 1, // Prend tout l'espace disponible
+    resizeMode: 'cover', // L'image couvre tout l'écran
   },
-  container: {
-    flex: 1,
+  overlay: {
+    flex: 1, // Prend tout l'espace disponible
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Optionnel : un voile semi-transparent pour améliorer la lisibilité
     padding: 16,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
     textAlign: 'center',
-    color: '#fff', // Optionnel : pour rendre le texte visible sur l'image de fond
+    color: '#fff', // Texte visible sur l'image de fond
   },
   list: {
     alignItems: 'center',
